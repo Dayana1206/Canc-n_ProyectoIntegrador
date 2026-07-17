@@ -6,31 +6,42 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <title>UTN GolMundial 2026 - Iniciar sesión</title>
+    <title>UTN GolMundial 2026 - Log In</title>
+    <h:outputStylesheet library="css" name="estilos.css" />
 </h:head>
-<h:body>
+<h:body class="fondo-cancha">
 
     <h:form id="loginForm">
-        <p:growl id="mensajes" showDetail="true" />
+        <p:growl id="messages" showDetail="true" />
 
-        <p:panel header="Iniciar sesión - Administrador" style="width:350px; margin:100px auto;">
+        <div class="tarjeta-mundial">
+            <div class="titulo">⚽ UTN GolMundial 2026</div>
 
             <h:panelGrid columns="1" style="width:100%">
 
-                <p:outputLabel for="username" value="Usuario" />
+                <p:outputLabel for="username" value="Username" />
                 <p:inputText id="username" value="#{loginBean.username}" required="true"
-                             requiredMessage="El usuario es obligatorio" />
+                             requiredMessage="Username is required" style="width:100%" />
 
-                <p:outputLabel for="password" value="Contraseña" />
+                <p:outputLabel for="password" value="Password" />
                 <p:password id="password" value="#{loginBean.password}" required="true"
-                            requiredMessage="La contraseña es obligatoria" feedback="false" />
+                            requiredMessage="Password is required" feedback="false" style="width:100%" />
 
-                <p:commandButton value="Ingresar" action="#{loginBean.login}"
-                                  update="mensajes" ajax="true" style="margin-top:15px" />
+                <div class="boton-dorado" style="margin-top:15px">
+                    <p:commandButton value="Log In" action="#{loginBean.login}"
+                                      update="messages" ajax="true" style="width:100%" />
+                </div>
+
+                <p:commandButton value="Continue as Guest" action="#{loginBean.enterAsGuest}"
+                                  styleClass="ui-button-secondary" style="width:100%; margin-top:8px" />
+
+                <h:panelGroup style="text-align:center; margin-top:15px; display:block" styleClass="enlace-claro">
+                    <h:outputText value="Don't have an account? " style="color:#555" />
+                    <h:link outcome="/register.xhtml" value="Register here" />
+                </h:panelGroup>
 
             </h:panelGrid>
-
-        </p:panel>
+        </div>
     </h:form>
 
 </h:body>

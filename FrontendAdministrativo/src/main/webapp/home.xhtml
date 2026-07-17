@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>UTN GolMundial 2026 - Home</title>
+    <h:outputStylesheet library="css" name="estilos.css" />
+</h:head>
+<h:body class="fondo-cancha">
+    <h:form id="homeForm">
+        <div class="tarjeta-mundial" style="width:600px;">
+            <h:panelGroup rendered="#{loginBean.authenticated}">
+                <h2 class="titulo">⚽ Welcome, #{loginBean.authenticatedUser.fullName}!</h2>
+                <p>Username: #{loginBean.authenticatedUser.username}</p>
+            </h:panelGroup>
+            <h:panelGroup rendered="#{loginBean.guest}">
+                <h2 class="titulo">⚽ You're browsing as a guest</h2>
+                <p>You can check the tournament, but you won't be able to make predictions.
+                   <h:link outcome="/register.xhtml" value="Register here" /> to join in.</p>
+            </h:panelGroup>
+            <h:panelGroup rendered="#{!loginBean.authenticated and !loginBean.guest}">
+                <h2 class="titulo">You need to log in first</h2>
+                <h:link outcome="/login.xhtml" value="Go to login" />
+            </h:panelGroup>
+            <p:separator rendered="#{loginBean.authenticated or loginBean.guest}" />
+            <h:panelGrid columns="2" style="width:100%" cellpadding="8" rendered="#{loginBean.authenticated or loginBean.guest}">
+                <p:button value="📅 Match Calendar" outcome="/calendar.xhtml" style="width:100%" styleClass="tarjeta-modulo" />
+                <p:button value="📊 Group Standings" outcome="/standings.xhtml" style="width:100%" styleClass="tarjeta-modulo" />
+                <p:button value="🎯 Make a Prediction" outcome="/predictions.xhtml" style="width:100%" styleClass="tarjeta-modulo"
+                          disabled="#{loginBean.guest}" />
+                <p:button value="💰 My Wallet" outcome="/wallet.xhtml" style="width:100%" styleClass="tarjeta-modulo"
+                          disabled="#{loginBean.guest}" />
+                <p:button value="🏆 Ranking" outcome="/ranking.xhtml" style="width:100%" styleClass="tarjeta-modulo" />
+                <p:commandButton value="Log Out" action="#{loginBean.logout}" style="width:100%" styleClass="tarjeta-modulo" />
+            </h:panelGrid>
+        </div>
+    </h:form>
+</h:body>
+</html>

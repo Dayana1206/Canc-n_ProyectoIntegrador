@@ -1,4 +1,4 @@
-package com.utn.golmundial.frontendadministrativo.resources;
+package com.utn.golmundial.publicfrontend.resources;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;

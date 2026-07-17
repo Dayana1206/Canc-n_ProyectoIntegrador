@@ -1,0 +1,64 @@
+:root{
+    --verde-cancha: #0b3d20;
+    --verde-claro: #1e7a3c;
+    --dorado: #f4c542;
+    --azul-cielo: #146b8c;
+    --blanco: #ffffff;
+    --texto-claro: #eaf3ea;
+}
+
+body{
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;   
+}
+.targeta-mundial{
+    background: var(--blanco);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    padding: 30px;
+    width: 380px;
+    margin:60px auto;
+}
+.tarjeta-mundial .titulo {
+    color: var(--verde-cancha);
+    text-align: center;
+    font-size: 1.6em;
+    margin-bottom: 20px;
+}
+/* Fondo verde cancha, para páginas completas */
+.fondo-cancha {
+    background: linear-gradient(135deg, var(--verde-cancha), var(--verde-claro));
+    min-height: 100vh;
+}
+
+/* Botón principal dorado */
+.boton-dorado .ui-button {
+    background: var(--dorado) !important;
+    color: var(--verde-cancha) !important;
+    border: none !important;
+    font-weight: bold !important;
+}
+
+.boton-dorado .ui-button:hover {
+    background: #e0b32e !important;
+}
+
+/* Enlaces sobre fondo oscuro */
+.enlace-claro a {
+    color: var(--dorado);
+    font-weight: bold;
+}
+
+/* Tarjetas del menú principal (home) */
+.tarjeta-modulo {
+    background: var(--blanco);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: transform 0.15s;
+}
+
+.tarjeta-modulo:hover {
+    transform: translateY(-4px);
+}

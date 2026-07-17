@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>UTN GolMundial 2026 - Register</title>
+    <h:outputStylesheet library="css" name="estilos.css" />
+</h:head>
+<h:body class="fondo-cancha">
+
+    <h:form id="registerForm">
+        <p:growl id="messages" showDetail="true" />
+
+        <div class="tarjeta-mundial">
+            <div class="titulo">⚽ Create your account</div>
+
+            <h:panelGrid columns="1" style="width:100%">
+
+                <p:outputLabel value="Username" />
+                <p:inputText value="#{registerBean.username}" required="true" style="width:100%" />
+
+                <p:outputLabel value="Email" />
+                <p:inputText value="#{registerBean.email}" required="true" style="width:100%" />
+
+                <p:outputLabel value="Full name" />
+                <p:inputText value="#{registerBean.fullName}" required="true" style="width:100%" />
+
+                <p:outputLabel value="Password" />
+                <p:password value="#{registerBean.password}" required="true" feedback="true" style="width:100%" />
+
+                <p:outputLabel value="Confirm password" />
+                <p:password value="#{registerBean.confirmPassword}" required="true" feedback="false" style="width:100%" />
+
+                <div class="boton-dorado" style="margin-top:15px">
+                    <p:commandButton value="Sign Up" action="#{registerBean.register}"
+                                      update="messages" style="width:100%" />
+                </div>
+
+                <h:panelGroup style="text-align:center; margin-top:10px; display:block" styleClass="enlace-claro">
+                    <h:link outcome="/login.xhtml" value="Already have an account? Log in" />
+                </h:panelGroup>
+
+            </h:panelGrid>
+        </div>
+    </h:form>
+
+</h:body>
+</html>
