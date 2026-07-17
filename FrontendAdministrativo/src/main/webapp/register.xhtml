@@ -12,35 +12,35 @@
 <h:body class="fondo-cancha">
 
     <h:form id="registerForm">
-        <p:growl id="messages" showDetail="true" />
+        <p:growl id="mensajes" showDetail="true" />
 
         <div class="tarjeta-mundial">
-            <div class="titulo">⚽ Create your account</div>
+            <div class="titulo">⚽ Crea tu cuenta</div>
 
             <h:panelGrid columns="1" style="width:100%">
 
-                <p:outputLabel value="Username" />
+                <p:outputLabel value="Nombre de Usuario" />
                 <p:inputText value="#{registerBean.username}" required="true" style="width:100%" />
 
                 <p:outputLabel value="Email" />
                 <p:inputText value="#{registerBean.email}" required="true" style="width:100%" />
 
-                <p:outputLabel value="Full name" />
+                <p:outputLabel value="Nombre Completo" />
                 <p:inputText value="#{registerBean.fullName}" required="true" style="width:100%" />
 
-                <p:outputLabel value="Password" />
+                <p:outputLabel value="Contraseña" />
                 <p:password value="#{registerBean.password}" required="true" feedback="true" style="width:100%" />
 
-                <p:outputLabel value="Confirm password" />
+                <p:outputLabel value="Confirmar contraseña" />
                 <p:password value="#{registerBean.confirmPassword}" required="true" feedback="false" style="width:100%" />
 
                 <div class="boton-dorado" style="margin-top:15px">
-                    <p:commandButton value="Sign Up" action="#{registerBean.register}"
-                                      update="messages" style="width:100%" />
+                    <p:commandButton value="Inscribirse" action="#{registerBean.register}"
+                                      update="mensajes" style="width:100%" />
                 </div>
 
                 <h:panelGroup style="text-align:center; margin-top:10px; display:block" styleClass="enlace-claro">
-                    <h:link outcome="/login.xhtml" value="Already have an account? Log in" />
+                    <h:link outcome="/login.xhtml" value="¿Ya tienes una cuenta? Inicia sesión." />
                 </h:panelGroup>
 
             </h:panelGrid>

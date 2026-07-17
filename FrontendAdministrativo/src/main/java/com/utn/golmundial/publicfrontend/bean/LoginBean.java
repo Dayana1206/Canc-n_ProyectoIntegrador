@@ -27,7 +27,7 @@ public class LoginBean implements Serializable {
         if (user == null) {
             FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                    "Invalid credentials", "Username or password is incorrect"));
+                    "Credenciales no válidas", "El nombre de usuario o la contraseña son incorrectos"));
             return null;
         }
 

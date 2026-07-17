@@ -12,28 +12,28 @@
     <h:form id="homeForm">
         <div class="tarjeta-mundial" style="width:600px;">
             <h:panelGroup rendered="#{loginBean.authenticated}">
-                <h2 class="titulo">⚽ Welcome, #{loginBean.authenticatedUser.fullName}!</h2>
-                <p>Username: #{loginBean.authenticatedUser.username}</p>
+                <h2 class="titulo">⚽ Bienvenido, #{loginBean.authenticatedUser.fullName}!</h2>
+                <p>Usuario: #{loginBean.authenticatedUser.username}</p>
             </h:panelGroup>
             <h:panelGroup rendered="#{loginBean.guest}">
-                <h2 class="titulo">⚽ You're browsing as a guest</h2>
-                <p>You can check the tournament, but you won't be able to make predictions.
-                   <h:link outcome="/register.xhtml" value="Register here" /> to join in.</p>
+                <h2 class="titulo">⚽ Estás navegando como invitado</h2>
+                <p>Puedes revisar el torneo, pero no podrás hacer predicciones.
+                   <h:link outcome="/register.xhtml" value="Regístrate aquí" /> para participar.</p>
             </h:panelGroup>
             <h:panelGroup rendered="#{!loginBean.authenticated and !loginBean.guest}">
-                <h2 class="titulo">You need to log in first</h2>
+                <h2 class="titulo">Necesitas iniciar sesión primero</h2>
                 <h:link outcome="/login.xhtml" value="Go to login" />
             </h:panelGroup>
             <p:separator rendered="#{loginBean.authenticated or loginBean.guest}" />
             <h:panelGrid columns="2" style="width:100%" cellpadding="8" rendered="#{loginBean.authenticated or loginBean.guest}">
-                <p:button value="📅 Match Calendar" outcome="/calendar.xhtml" style="width:100%" styleClass="tarjeta-modulo" />
-                <p:button value="📊 Group Standings" outcome="/standings.xhtml" style="width:100%" styleClass="tarjeta-modulo" />
-                <p:button value="🎯 Make a Prediction" outcome="/predictions.xhtml" style="width:100%" styleClass="tarjeta-modulo"
+                <p:button value="📅 Calendario de Partidos" outcome="/calendar.xhtml" style="width:100%" styleClass="tarjeta-modulo" />
+                <p:button value="📊 Clasificación de Grupos" outcome="/standings.xhtml" style="width:100%" styleClass="tarjeta-modulo" />
+                <p:button value="🎯 Hacer una Predicción" outcome="/predictions.xhtml" style="width:100%" styleClass="tarjeta-modulo"
                           disabled="#{loginBean.guest}" />
-                <p:button value="💰 My Wallet" outcome="/wallet.xhtml" style="width:100%" styleClass="tarjeta-modulo"
+                <p:button value="💰 Mi Billetera" outcome="/wallet.xhtml" style="width:100%" styleClass="tarjeta-modulo"
                           disabled="#{loginBean.guest}" />
                 <p:button value="🏆 Ranking" outcome="/ranking.xhtml" style="width:100%" styleClass="tarjeta-modulo" />
-                <p:commandButton value="Log Out" action="#{loginBean.logout}" style="width:100%" styleClass="tarjeta-modulo" />
+                <p:commandButton value="Cerrar Sesión" action="#{loginBean.logout}" style="width:100%" styleClass="tarjeta-modulo" />
             </h:panelGrid>
         </div>
     </h:form>

@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>UTN GolMundial 2026 - Calendario de Partidos</title>
+    <h:outputStylesheet library="css" name="estilos.css" />
+    <style>
+        .match-card {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+        .match-badge {
+            background: var(--verde-cancha);
+            color: white;
+            font-size: 0.75em;
+            padding: 3px 10px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .match-teams {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: var(--verde-cancha);
+            margin: 8px 0;
+        }
+        .match-date, .match-venue {
+            font-size: 0.85em;
+            color: #666;
+        }
+    </style>
+</h:head>
+<h:body class="fondo-cancha">
+
+    <h:form id="formularioCalendario">
+        <div style="max-width:1000px; margin:0 auto; padding:30px 15px;">
+            <h1 style="color:white; text-align:center;">⚽ Calendario de Partidos - Fase de Grupos</h1>
+
+            <p:dataGrid value="#{matchCalendarBean.matches}" var="m" columns="3" layout="grid"
+                        paginator="true" rows="12">
+
+                <div class="match-card">
+                    <span class="match-badge">Grupo #{m.group}</span>
+                    <div class="match-teams">
+                        #{m.homeTeam} vs #{m.awayTeam}
+                    </div>
+                    <div class="match-date">#{m.displayDate}</div>
+                    <div class="match-venue">#{m.venueLabel}</div>
+                </div>
+
+            </p:dataGrid>
+        </div>
+    </h:form>
+
+</h:body>
+</html>
