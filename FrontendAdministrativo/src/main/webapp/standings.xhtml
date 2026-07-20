@@ -2,18 +2,50 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="jakarta.faces.html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="jakarta.faces.facelets">
+
 <h:head>
-    <title>UTN GolMundial 2026 - Clasificación del grupo</title>
+    <title>UTN GolMundial 2026 - Group Standings</title>
     <h:outputStylesheet library="css" name="estilos.css" />
 </h:head>
 <h:body class="fondo-cancha">
+
     <h:form>
-        <div class="tarjeta-mundial">
-            <div class="titulo">📊 Clasificación del grupo</div>
-            <p style="text-align:center;">Coming soon...</p>
-            <h:link outcome="/home.xhtml" value="⬅ Volver al inicio" />
+        <div style="max-width:900px; margin:0 auto; padding:30px 15px;">
+            <h1 style="color:white; text-align:center;">📊 Clasificación del grupo</h1>
+            <p style="color:#eaf3ea; text-align:center; font-size:0.85em;">
+                * Results are simulated for demo purposes until the real backend is connected.
+            </p>
+
+            <p:tabView>
+                <ui:repeat value="#{standingsBean.groupKeys}" var="g">
+                    <p:tab title="Group #{g}">
+                        <p:dataTable value="#{standingsBean.standingsByGroup[g]}" var="t">
+                            <p:column headerText="Team">
+                                <h:outputText value="#{t.team}" style="font-weight:bold" />
+                            </p:column>
+                            <p:column headerText="PJ"><h:outputText value="#{t.played}" /></p:column>
+                            <p:column headerText="W"><h:outputText value="#{t.won}" /></p:column>
+                            <p:column headerText="D"><h:outputText value="#{t.drawn}" /></p:column>
+                            <p:column headerText="L"><h:outputText value="#{t.lost}" /></p:column>
+                            <p:column headerText="GF"><h:outputText value="#{t.goalsFor}" /></p:column>
+                            <p:column headerText="GA"><h:outputText value="#{t.goalsAgainst}" /></p:column>
+                            <p:column headerText="GD"><h:outputText value="#{t.goalDifference}" /></p:column>
+                            <p:column headerText="Pts">
+                                <h:outputText value="#{t.points}" style="font-weight:bold" />
+                            </p:column>
+                        </p:dataTable>
+                    </p:tab>
+                </ui:repeat>
+            </p:tabView>
+
+            <div style="text-align:center; margin-top:20px;">
+                <h:link outcome="/home.xhtml" value="⬅ Back to Home" style="color:white; font-weight:bold;" />
+            </div>
         </div>
     </h:form>
+
 </h:body>
 </html>
