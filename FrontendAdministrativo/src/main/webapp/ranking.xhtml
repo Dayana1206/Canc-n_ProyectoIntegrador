@@ -1,19 +1,75 @@
-<?xml version='1.0' encoding='UTF-8' ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="jakarta.faces.html"
-      xmlns:p="http://primefaces.org/ui">
-<h:head>
-    <title>UTN GolMundial 2026 - Ranking</title>
-    <h:outputStylesheet library="css" name="estilos.css" />
-</h:head>
-<h:body class="fondo-imagen">
-    <h:form>
-        <div class="tarjeta-mundial">
-            <div class="titulo"> Ranking</div>
-            <p style="text-align:center;">Muy pronto...</p>
-            <h:link outcome="/home.xhtml" value="⬅ Volver al inicio" />
+
+<ui:composition
+    template="/templates/template.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="jakarta.faces.html"
+    xmlns:ui="jakarta.faces.facelets">
+
+    <ui:define name="contenido">
+
+        <h1 class="titulo-pagina">
+            🏆 Ranking Mundial
+        </h1>
+
+        <div class="ranking-contenedor">
+
+            <ui:repeat value="#{rankingBean.ranking}" var="r" varStatus="st">
+
+                <div class="ranking-card">
+
+                    <div class="ranking-posicion">
+
+                        #{st.index + 1}
+
+                    </div>
+
+                    <div class="ranking-usuario">
+
+                        <h2>
+
+                            <h:panelGroup rendered="#{st.index==0}">
+                                🥇
+                            </h:panelGroup>
+
+                            <h:panelGroup rendered="#{st.index==1}">
+                                🥈
+                            </h:panelGroup>
+
+                            <h:panelGroup rendered="#{st.index==2}">
+                                🥉
+                            </h:panelGroup>
+
+                            Usuario #{r.usuarioId}
+
+                        </h2>
+
+                        <p>
+
+                            ⭐ Aciertos:
+                            <strong>#{r.aciertos}</strong>
+
+                        </p>
+
+                    </div>
+
+                    <div class="ranking-saldo">
+
+                        #{r.saldo}
+
+                        <br/>
+
+                        🪙 UTNCoins
+
+                    </div>
+
+                </div>
+
+            </ui:repeat>
+
         </div>
-    </h:form>
-</h:body>
-</html>
+
+    </ui:define>
+
+</ui:composition>

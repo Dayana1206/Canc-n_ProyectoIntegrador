@@ -1,63 +1,114 @@
-<?xml version='1.0' encoding='UTF-8' ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="jakarta.faces.html"
-      xmlns:f="jakarta.faces.core"
-      xmlns:p="http://primefaces.org/ui">
 
-<h:head>
-    <title>UTN GolMundial 2026 - Calendario de Partidos</title>
-    <h:outputStylesheet library="css" name="estilos.css" />
-    <style>
-        .match-card {
-            background: white;
-            border-radius: 12px;
-            padding: 16px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-            text-align: center;
-        }
-        .match-badge {
-            background: var(--verde-cancha);
-            color: white;
-            font-size: 0.75em;
-            padding: 3px 10px;
-            border-radius: 12px;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
-        .match-teams {
-            font-size: 1.4em;
-            font-weight: bold;
-            color: var(--verde-cancha);
-            margin: 8px 0;
-        }
-        .match-date, .match-venue {
-            font-size: 0.85em;
-            color: #666;
-        }
-    </style>
-</h:head>
-<h:body class="fondo-imagen">
+<ui:composition
+    template="/templates/template.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="jakarta.faces.html"
+    xmlns:c="jakarta.tags.core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="jakarta.faces.facelets">
 
-    <h:form id="formularioCalendario">
-        <div style="max-width:1000px; margin:0 auto; padding:30px 15px;">
-            <h1 style="color:white; text-align:center;">⚽ Calendario de Partidos - Fase de Grupos</h1>
+    <ui:define name="contenido">
 
-            <p:dataGrid value="#{matchCalendarBean.matches}" var="m" columns="3" layout="grid"
-                        paginator="true" rows="12">
+        <h1 class="titulo-pagina">
+            📅 Calendario Mundial 2026
+        </h1>
 
-                <div class="match-card">
-                    <span class="match-badge">Grupo #{m.group}</span>
-                    <div class="match-teams">
-                        #{m.homeTeam} vs #{m.awayTeam}
+        <p:tabView styleClass="tabs-grupos">
+
+            <c:forEach items="#{matchCalendarBean.groupKeys}" var="grupo">
+
+                <p:tab title="Grupo #{grupo}">
+
+                    <div class="contenedor-partidos">
+
+                        <c:forEach items="#{matchCalendarBean.getMatchesByGroup(grupo)}" var="m">
+
+                            <div class="card-partido">
+
+                                <!-- ================= LOCAL ================= -->
+
+                                <div class="equipo">
+
+                                    <div class="bandera">
+                                        #{matchCalendarBean.getFlag(m.homeTeam)}
+                                    </div>
+
+                                    <div class="nombre-equipo">
+                                        #{matchCalendarBean.getCountry(m.homeTeam)}
+                                    </div>
+
+                                </div>
+
+                                <!-- ================= CENTRO ================= -->
+
+                                <div class="centro">
+
+                                    <h:panelGroup rendered="#{m.status == 'FINALIZADO'}">
+
+                                        <div class="resultado">
+
+                                            #{m.homeGoals} - #{m.awayGoals}
+
+                                        </div>
+
+                                    </h:panelGroup>
+
+                                    <h:panelGroup rendered="#{m.status != 'FINALIZADO'}">
+
+                                        <div class="vs">
+
+                                            VS
+
+                                        </div>
+
+                                    </h:panelGroup>
+
+                                    <div class="fecha">
+
+                                        📅 #{m.displayDate}
+
+                                    </div>
+
+                                    <div class="estado">
+
+                                        #{m.status}
+
+                                    </div>
+
+                                </div>
+
+                                <!-- ================= VISITANTE ================= -->
+
+                                <div class="equipo">
+
+                                    <div class="bandera">
+
+                                        #{matchCalendarBean.getFlag(m.awayTeam)}
+
+                                    </div>
+
+                                    <div class="nombre-equipo">
+
+                                        #{matchCalendarBean.getCountry(m.awayTeam)}
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </c:forEach>
+
                     </div>
-                    <div class="match-date">#{m.displayDate}</div>
-                    <div class="match-venue">#{m.venueLabel}</div>
-                </div>
 
-            </p:dataGrid>
-        </div>
-    </h:form>
+                </p:tab>
 
-</h:body>
-</html>
+            </c:forEach>
+
+        </p:tabView>
+
+    </ui:define>
+
+</ui:composition>

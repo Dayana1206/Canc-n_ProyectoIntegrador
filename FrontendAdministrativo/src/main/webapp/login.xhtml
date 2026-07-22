@@ -26,8 +26,15 @@
                     <p:commandButton value="Ingresar" action="#{loginBean.login}"
                                       update="mensajes" ajax="true" style="width:100%" />
                 </div>
-                <p:commandButton value="Continuar como Invitado" action="#{loginBean.enterAsGuest}"
-                                  styleClass="ui-button-secondary" style="width:100%; margin-top:8px" />
+                <p:commandButton
+    id="btnInvitado"
+    value="Continuar como Invitado"
+    action="#{loginBean.enterAsGuest}"
+    ajax="false"
+    immediate="true"
+    process="@this"
+    styleClass="ui-button-secondary"
+    style="width:100%; margin-top:8px"/>
                 <h:panelGroup style="text-align:center; margin-top:15px; display:block" styleClass="enlace-claro">
                     <h:outputText value="¿No tienes cuenta? " style="color:#555" />
                     <h:link outcome="/register.xhtml" value="Regístrate aquí" />
