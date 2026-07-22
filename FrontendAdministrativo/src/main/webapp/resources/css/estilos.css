@@ -29,6 +29,16 @@ body{
     background: linear-gradient(135deg, var(--verde-cancha), var(--verde-claro));
     min-height: 100vh;
 }
+.fondo-imagen {
+    position: relative;
+    min-height: 100vh;
+     background-image: linear-gradient(rgba(10,15,20,0.6), rgba(10,15,20,0.75)),
+                       url('/FrontendAdministrativo-1.0-SNAPSHOT/resources/images/fondo-mundial.jpg');
+    background-size: cover;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
 /* Botón principal dorado */
 .boton-dorado .ui-button {
     background: var(--dorado) !important;

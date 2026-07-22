@@ -8,11 +8,13 @@
     <title>UTN GolMundial 2026 - Log In</title>
     <h:outputStylesheet library="css" name="estilos.css" />
 </h:head>
-<h:body class="fondo-cancha">
+<h:body class="fondo-imagen">
     <h:form id="loginForm">
         <p:growl id="mensajes" showDetail="true" />
         <div class="tarjeta-mundial">
-            <div class="titulo">⚽ UTN GolMundial 2026</div>
+            <div class="titulo">
+               <h:graphicImage library="images" name="balon.jpg" style="height:28px; vertical-align:middle; margin-right:8px;" />
+               UTN GolMundial 2026 </div>
             <h:panelGrid columns="1" style="width:100%">
                 <p:outputLabel for="username" value="Nombre de Usuario" />
                 <p:inputText id="username" value="#{loginBean.username}" required="true"

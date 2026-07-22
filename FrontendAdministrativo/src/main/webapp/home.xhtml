@@ -8,15 +8,20 @@
     <title>UTN GolMundial 2026 - Home</title>
     <h:outputStylesheet library="css" name="estilos.css" />
 </h:head>
-<h:body class="fondo-cancha">
+<h:body class="fondo-imagen">
     <h:form id="homeForm">
         <div class="tarjeta-mundial" style="width:600px;">
+
+            <div style="text-align:center; margin-bottom:10px;">
+                <h:graphicImage library="images" name="balon-mundial.png" style="height:40px;" />
+            </div>
+
             <h:panelGroup rendered="#{loginBean.authenticated}">
-                <h2 class="titulo">⚽ Bienvenido, #{loginBean.authenticatedUser.fullName}!</h2>
+                <h2 class="titulo">Bienvenido, #{loginBean.authenticatedUser.fullName}!</h2>
                 <p>Usuario: #{loginBean.authenticatedUser.username}</p>
             </h:panelGroup>
             <h:panelGroup rendered="#{loginBean.guest}">
-                <h2 class="titulo">⚽ Estás navegando como invitado</h2>
+                <h2 class="titulo">Estás navegando como invitado</h2>
                 <p>Puedes revisar el torneo, pero no podrás hacer predicciones.
                    <h:link outcome="/register.xhtml" value="Regístrate aquí" /> para participar.</p>
             </h:panelGroup>

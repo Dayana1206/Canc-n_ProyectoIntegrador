@@ -62,12 +62,21 @@
 <h:body>
 
     <div class="hero">
-        <video autoplay="autoplay" muted="muted" loop="loop" playsinline="playsinline">
-            <source src="#{resource['videos/inicio.mp4']}" type="video/mp4" />
+         <video id="videoFondo" autoplay="autoplay" muted="muted" loop="loop" playsinline="playsinline">
+            <source src="#{resource['videos/inicio2.mp4']}" type="video/mp4" />
         </video>
         <div class="overlay"></div>
+<!--
+        <button type="button" class="boton-sonido"
+                onclick="document.getElementById('videoFondo').muted = false;">
+            Activar sonido
+        </button>
+-->
 
-        <h1>⚽ UTN GolMundial 2026</h1>
+        <h1>
+    <h:graphicImage library="images" name="balon-mundial.png" style="height:48px; vertical-align:middle; margin-right:12px;" />
+    UTN GolMundial 2026
+</h1>
         <p>Haz pronósticos, compite y sigue la Copa del Mundo con tus amigos.</p>
 
         <h:form>
