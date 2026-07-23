@@ -79,55 +79,79 @@
         📜 Historial de Movimientos
     </h2>
 
-    <div class="movimiento">
+    <ui:repeat value="#{transaccionBean.transacciones}" var="t">
 
-        <div class="movimiento-icono">
-            🎁
+        <div class="movimiento">
+
+            <div class="movimiento-icono">
+
+                <h:outputText value="🎁"
+                              rendered="#{t.tipo eq 'BIENVENIDA'}"/>
+
+                <h:outputText value="🎯"
+                              rendered="#{t.tipo eq 'PREDICCION'}"/>
+
+                <h:outputText value="🏆"
+                              rendered="#{t.tipo eq 'PREMIO'}"/>
+
+            </div>
+
+            <div class="movimiento-texto">
+
+                <strong>
+                    #{t.tipo}
+                </strong>
+
+                <h:panelGroup rendered="#{t.tipo eq 'PREDICCION'}">
+
+                    <p>
+                        Monto apostado: #{t.monto} UTNGolCoin
+                    </p>
+
+                </h:panelGroup>
+
+                <h:panelGroup rendered="#{t.tipo eq 'BIENVENIDA'}">
+
+                    <p>
+                        Bono recibido: #{t.monto} UTNGolCoin
+                    </p>
+
+                </h:panelGroup>
+
+                <h:panelGroup rendered="#{t.tipo eq 'PREMIO'}">
+
+                    <p>
+                        Premio recibido: #{t.monto} UTNGolCoin
+                    </p>
+
+                </h:panelGroup>
+
+                <p>
+
+                    Saldo disponible: #{t.saldoResultante} UTNGolCoin
+
+                </p>
+
+                <small>
+
+                    #{t.fecha}
+
+                </small>
+
+            </div>
+
+            <div class="movimiento-valor">
+
+                #{t.monto} UTNGolCoin
+
+            </div>
+
         </div>
 
-        <div class="movimiento-texto">
-
-            <strong>Bono de bienvenida</strong>
-
-            <p>
-                Has recibido tus primeras monedas.
-            </p>
-
-        </div>
-
-        <div class="movimiento-valor positivo">
-
-            +10 UTNGolCoin
-
-        </div>
-
-    </div>
-
-    <div class="movimiento">
-
-        <div class="movimiento-icono">
-            📅
-        </div>
-
-        <div class="movimiento-texto">
-
-            <strong>Fecha de creación</strong>
-
-            <p>
-                #{walletBean.wallet.fechaCreacion}
-            </p>
-
-        </div>
-
-        <div class="movimiento-estado">
-
-            Activa
-
-        </div>
-
-    </div>
+    </ui:repeat>
 
 </div>
+
     </ui:define>
 
 </ui:composition>

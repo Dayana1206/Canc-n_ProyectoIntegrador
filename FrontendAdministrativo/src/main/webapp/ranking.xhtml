@@ -5,68 +5,47 @@
     template="/templates/template.xhtml"
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="jakarta.faces.html"
+    xmlns:p="http://primefaces.org/ui"
     xmlns:ui="jakarta.faces.facelets">
 
     <ui:define name="contenido">
 
         <h1 class="titulo-pagina">
-            🏆 Ranking Mundial
+            🏆 Ranking General
         </h1>
 
-        <div class="ranking-contenedor">
+        <div class="ranking-card">
 
-            <ui:repeat value="#{rankingBean.ranking}" var="r" varStatus="st">
+            <h:form>
 
-                <div class="ranking-card">
+                <p:dataTable
+                    value="#{rankingBean.ranking}"
+                    var="r"
+                    emptyMessage="No existen datos.">
 
-                    <div class="ranking-posicion">
+                    <p:column headerText="Posición">
+                        #{rankingBean.ranking.indexOf(r)+1}
+                    </p:column>
 
-                        #{st.index + 1}
+                    <p:column headerText="Usuario">
+                        #{r.usuarioId}
+                    </p:column>
 
-                    </div>
+                    <p:column headerText="Saldo">
+                        #{r.saldo} UTNGolCoin
+                    </p:column>
 
-                    <div class="ranking-usuario">
+                    <p:column headerText="Aciertos">
+                        #{r.aciertos}
+                    </p:column>
 
-                        <h2>
+                    <p:column headerText="Predicciones">
+                        #{r.totalPredicciones}
+                    </p:column>
 
-                            <h:panelGroup rendered="#{st.index==0}">
-                                🥇
-                            </h:panelGroup>
+                </p:dataTable>
 
-                            <h:panelGroup rendered="#{st.index==1}">
-                                🥈
-                            </h:panelGroup>
-
-                            <h:panelGroup rendered="#{st.index==2}">
-                                🥉
-                            </h:panelGroup>
-
-                            Usuario #{r.usuarioId}
-
-                        </h2>
-
-                        <p>
-
-                            ⭐ Aciertos:
-                            <strong>#{r.aciertos}</strong>
-
-                        </p>
-
-                    </div>
-
-                    <div class="ranking-saldo">
-
-                        #{r.saldo}
-
-                        <br/>
-
-                        🪙 UTNCoins
-
-                    </div>
-
-                </div>
-
-            </ui:repeat>
+            </h:form>
 
         </div>
 

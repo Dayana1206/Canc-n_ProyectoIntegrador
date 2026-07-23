@@ -23,6 +23,8 @@
 
             <h:form>
 
+                <p:messages id="mensajes"/>
+
                 <div class="form-prediccion">
 
                     <div class="campo">
@@ -66,10 +68,11 @@
                 <div style="text-align:center; margin-top:25px;">
 
                     <p:commandButton
-                        value="⚽ Realizar Predicción"
-                        action="#{predictionBean.apostar}"
-                        update="@form historial"
-                        styleClass="btn-prediccion"/>
+                            value="⚽ Realizar Predicción"
+                            action="#{predictionBean.apostar}"
+                            process="@form"
+                            update="@form historial"
+                            styleClass="btn-prediccion"/>
 
                 </div>
 
@@ -86,8 +89,9 @@
             <h:form id="historial">
 
                 <p:dataTable
-                    value="#{predictionBean.misApuestas}"
-                    var="p">
+                        value="#{predictionBean.misApuestas}"
+                        var="p"
+                        emptyMessage="No existen predicciones.">
 
                     <p:column headerText="Partido">
                         #{p.partidoId}
@@ -98,7 +102,7 @@
                     </p:column>
 
                     <p:column headerText="Apuesta">
-                        #{p.monto}
+                        #{p.monto} UTNGolCoin
                     </p:column>
 
                     <p:column headerText="Cuota">
@@ -107,28 +111,22 @@
 
                     <p:column headerText="Estado">
 
-                        <h:panelGroup rendered="#{p.estado == 'GANADA'}">
-
+                        <h:panelGroup rendered="#{p.estado eq 'GANADA'}">
                             <span class="estado-ganada">
                                 GANADA
                             </span>
-
                         </h:panelGroup>
 
-                        <h:panelGroup rendered="#{p.estado == 'PERDIDA'}">
-
+                        <h:panelGroup rendered="#{p.estado eq 'PERDIDA'}">
                             <span class="estado-perdida">
                                 PERDIDA
                             </span>
-
                         </h:panelGroup>
 
-                        <h:panelGroup rendered="#{p.estado != 'GANADA' and p.estado != 'PERDIDA'}">
-
+                        <h:panelGroup rendered="#{p.estado eq 'PENDIENTE'}">
                             <span class="estado-pendiente">
-                                #{p.estado}
+                                PENDIENTE
                             </span>
-
                         </h:panelGroup>
 
                     </p:column>
